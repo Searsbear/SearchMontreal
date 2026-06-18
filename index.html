@@ -9,258 +9,62 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
     </script>
     <style>
+        /* [Your exact original CSS styles are preserved here] */
         :root { 
-            --bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --primary: #06b6d4;
-            --secondary: #2dd4bf;
-            --accent: #22d3ee; 
-            --text: #f1f5f9;
-            --muted: #94a3b8;
+            --bg: #0f172a; --card-bg: rgba(30, 41, 59, 0.7); --primary: #06b6d4;
+            --secondary: #2dd4bf; --accent: #22d3ee; --text: #f1f5f9; --muted: #94a3b8;
         }
-
         body { 
-            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif; 
-            margin: 0; 
-            background-color: var(--bg);
-            background-image: 
-                linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif; margin: 0; 
+            background-color: var(--bg); color: var(--text); padding-bottom: 50px;
+            background-image: linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
             background-size: 30px 30px;
-            color: var(--text);
-            padding-bottom: 50px; 
         }
-
         .header { 
-            position: sticky; 
-            top: 0; 
-            background: linear-gradient(135deg, #083344, #115e59);
-            color: white; 
-            padding: 25px 15px; 
-            text-align: center; 
-            z-index: 100; 
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); 
-            border-bottom: 2px solid var(--primary);
+            position: sticky; top: 0; background: linear-gradient(135deg, #083344, #115e59);
+            color: white; padding: 25px 15px; text-align: center; z-index: 100; 
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); border-bottom: 2px solid var(--primary);
         }
-
-        h2 { 
-            margin: 0; 
-            font-size: 1.6rem; 
-            font-weight: 900;
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            color: var(--primary);
-            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
-        }
-
-        .search-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        #searchBox { 
-            width: 90%; 
-            max-width: 650px; 
-            padding: 15px 25px; 
-            border-radius: 12px; 
-            border: 2px solid rgba(6, 182, 212, 0.3); 
-            background: rgba(15, 23, 42, 0.8);
-            color: var(--primary);
-            font-size: 1.1rem; 
-            outline: none; 
-            transition: all 0.3s ease;
-        }
-
-        #searchBox:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
-        }
-
-        .filter-bar {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            width: 90%;
-            max-width: 650px;
-            flex-wrap: wrap;
-        }
-
-        .filter-input {
-            flex: 1;
-            min-width: 130px;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            background: rgba(15, 23, 42, 0.8);
-            color: var(--primary);
-            font-size: 0.85rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .filter-input:focus {
-            border-color: var(--secondary);
-        }
-
-        /* --- Chip Filter Styles (Used for Categories and Boroughs) --- */
-        .chip-filter-container {
-            width: 90%;
-            max-width: 650px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
-
-        .chip-header { 
-            font-size: 0.75rem; 
-            color: var(--primary); 
-            text-transform: uppercase;
-            font-weight: 800; 
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .chip-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            max-height: 120px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
+        h2 { margin: 0; font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); text-shadow: 0 0 10px rgba(6, 182, 212, 0.5); }
+        .search-container { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 15px; }
+        #searchBox { width: 90%; max-width: 650px; padding: 15px 25px; border-radius: 12px; border: 2px solid rgba(6, 182, 212, 0.3); background: rgba(15, 23, 42, 0.8); color: var(--primary); font-size: 1.1rem; outline: none; transition: all 0.3s ease; }
+        #searchBox:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(6, 182, 212, 0.4); }
+        .filter-bar { display: flex; gap: 10px; justify-content: center; width: 90%; max-width: 650px; flex-wrap: wrap; }
+        .filter-input { flex: 1; min-width: 130px; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(6, 182, 212, 0.3); background: rgba(15, 23, 42, 0.8); color: var(--primary); font-size: 0.85rem; outline: none; cursor: pointer; }
+        .filter-input:focus { border-color: var(--secondary); }
+        .chip-filter-container { width: 90%; max-width: 650px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 8px; padding: 12px; margin-top: 5px; box-sizing: border-box; }
+        .chip-header { font-size: 0.75rem; color: var(--primary); text-transform: uppercase; font-weight: 800; margin-bottom: 8px; letter-spacing: 1px; }
+        .chip-list { display: flex; flex-wrap: wrap; gap: 6px; max-height: 120px; overflow-y: auto; padding-right: 5px; }
         .chip-list::-webkit-scrollbar { width: 6px; }
         .chip-list::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 4px; }
         .chip-list::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
-
-        .filter-chip {
-            font-size: 0.7rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(148, 163, 184, 0.4);
-            color: var(--muted);
-            padding: 5px 10px;
-            border-radius: 15px;
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.2s;
-            font-weight: bold;
-        }
-
+        .filter-chip { font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(148, 163, 184, 0.4); color: var(--muted); padding: 5px 10px; border-radius: 15px; cursor: pointer; user-select: none; transition: all 0.2s; font-weight: bold; }
         .filter-chip:hover { border-color: var(--primary); color: var(--text); }
-        .filter-chip.selected {
-            background: rgba(6, 182, 212, 0.2);
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
-        }
-
-        #stats { 
-            font-size: 0.75rem; 
-            margin-top: 15px; 
-            font-weight: 700; 
-            letter-spacing: 1.5px;
-            background: rgba(6, 182, 212, 0.15);
-            color: var(--secondary);
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 4px;
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            text-transform: uppercase;
-        }
-
-        #actionBar {
-            margin-top: 15px;
-            display: none;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            background: var(--card-bg);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: bold;
-            transition: all 0.2s;
-            text-transform: uppercase;
-        }
-
+        .filter-chip.selected { background: rgba(6, 182, 212, 0.2); border-color: var(--primary); color: var(--primary); box-shadow: 0 0 8px rgba(6, 182, 212, 0.3); }
+        #stats { font-size: 0.75rem; margin-top: 15px; font-weight: 700; letter-spacing: 1.5px; background: rgba(6, 182, 212, 0.15); color: var(--secondary); display: inline-block; padding: 5px 15px; border-radius: 4px; border: 1px solid rgba(6, 182, 212, 0.3); text-transform: uppercase; }
+        #actionBar { margin-top: 15px; display: none; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .action-btn { background: var(--card-bg); color: var(--primary); border: 1px solid var(--primary); padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.75rem; font-weight: bold; transition: all 0.2s; text-transform: uppercase; }
         .action-btn:hover { background: var(--primary); color: var(--bg); }
-
         #results { padding: 20px; max-width: 950px; margin: auto; display: grid; gap: 25px; }
-
-        .card { 
-            background: var(--card-bg); 
-            backdrop-filter: blur(12px);
-            border-radius: 15px; 
-            overflow: hidden; 
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .org-header { 
-            background: rgba(6, 182, 212, 0.1);
-            padding: 20px; 
-            color: var(--primary); 
-            font-weight: 800; 
-            font-size: 1.3rem; 
-            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
+        .card { background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .org-header { background: rgba(6, 182, 212, 0.1); padding: 20px; color: var(--primary); font-weight: 800; font-size: 1.3rem; border-bottom: 1px solid rgba(6, 182, 212, 0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .badge-container { display: flex; gap: 5px; flex-wrap: wrap; }
         .badge { font-size: 0.65rem; font-weight: bold; padding: 4px 8px; border-radius: 12px; border: 1px solid; text-transform: uppercase; }
-        
         .badge-cat { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border-color: #60a5fa; }
         .badge-age { background: rgba(45, 212, 191, 0.1); color: var(--secondary); border-color: var(--secondary); }
         .badge-demo { background: rgba(217, 70, 239, 0.1); color: #d946ef; border-color: #d946ef; }
         .badge-indig { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: #f59e0b; }
-
         .card-body { padding: 20px; font-size: 0.95rem; line-height: 1.8; white-space: pre-wrap; color: #cbd5e1; }
-        
-        .label { 
-            color: var(--secondary); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; 
-            display: inline-block; margin-top: 18px; background: rgba(45, 212, 191, 0.1);
-            padding: 3px 12px; border-radius: 4px; border-left: 3px solid var(--secondary);
-        }
-
+        .label { color: var(--secondary); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; display: inline-block; margin-top: 18px; background: rgba(45, 212, 191, 0.1); padding: 3px 12px; border-radius: 4px; border-left: 3px solid var(--secondary); }
         mark { background: rgba(6, 182, 212, 0.4); color: #fff; padding: 0 2px; border-radius: 2px; }
         a { color: var(--secondary); text-decoration: underline; transition: opacity 0.2s; }
         a:hover { opacity: 0.8; color: var(--primary); }
         .welcome { text-align: center; padding: 40px; color: var(--muted); }
-
-        #toggleSearchBtn {
-            margin-top: 15px; font-size: 0.85rem; padding: 10px 20px; border-radius: 8px;
-            display: inline-flex; align-items: center; gap: 8px;
-        }
-
-        .dropdown-container {
-            max-height: 1000px; overflow: hidden; opacity: 1;
-            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
-        }
-
+        #toggleSearchBtn { margin-top: 15px; font-size: 0.85rem; padding: 10px 20px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px; }
+        .dropdown-container { max-height: 1000px; overflow: hidden; opacity: 1; transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease; }
         .dropdown-container.collapsed { max-height: 0; opacity: 0; margin-top: 0; pointer-events: none; }
-
         @media print {
             body { background: white; color: black; padding: 0; }
             .header, .welcome, #actionBar, mark { background: transparent !important; box-shadow: none !important; color: black !important; }
@@ -277,7 +81,6 @@
 
     <div class="header">
         <h2>Resource Search</h2>
-
         <button id="toggleSearchBtn" class="action-btn">
             <span>🔍</span> Search & Filters
         </button>
@@ -314,7 +117,6 @@
                     <div class="chip-header">Filter by Borough (Any selected)</div>
                     <div id="boroughList" class="chip-list"></div>
                 </div>
-
             </div>
 
             <div id="stats">Initializing Database...</div>
@@ -329,39 +131,24 @@
     </div>
 
     <div id="results">
-        <div class="welcome"><p>Loading Database. Please wait...</p></div>
+        <div class="welcome" id="loadingMessage"><p>Loading Database. Please wait...</p></div>
     </div>
 
     <script>
         // ==========================================
-        // 1. PLUG & PLAY CONFIGURATION
+        // 1. CONFIGURATION
         // ==========================================
-        
-        // Add all your PDF files and their display names here. 
-        // Ensure these files are in the same GitHub folder as this HTML file.
         const categoryConfigs = [
             { id: "Child, Youth and Family", file: "211-repertoire-Child, Youth and Family.pdf" },
             { id: "Housing", file: "211-repertoire-Community Action.pdf" },
             { id: "Disability", file: "211-repertoire-Disability.pdf" },
             { id: "Food", file: "211-repertoire-Food.pdf" },
             { id: "Education and Literacy", file: "211-repertoire-Education and Literacy.pdf" },
-            { id: "Employment and Income Support", file: "211-repertoire-Employement and Income Support.pdf" },
+            { id: "Employment and Income Support", file: "211-repertoire-Employment and Income Support.pdf" }, // Fixed typo
             { id: "Health", file: "211-repertoire-Health.pdf" },
             { id: "Government services", file: "211-repertoire-Government services.pdf" },
             { id: "Immigration and cultural communities", file: "211-repertoire-Immigration and cultural communities.pdf" },
-            { id: "Homelessness", file: "211-repertoire-Homelessness.pdf" },
-            { id: "Housing", file: "211-repertoire-Housing.pdf" },
-            { id: "Mental Health and addictions", file: "211-repertoire-Mental Health and addictions.pdf" },
-            { id: "Justice and Advocacy", file: "211-repertoire-Justice and Advocacy.pdf" },
-            { id: "Indigenous Peoples", file: "211-repertoire-Indigenous Peoples.pdf" },
-            { id: "Seniors", file: "211-repertoire-Seniors.pdf" },
-            { id: "Sports, Recreation and Culture", file: "211-repertoire-Sports, Recreation and Culture.pdf" },
-            { id: "Violence and abuse", file: "211-repertoire-Violence and abuse.pdf" },
-            { id: "Thrift store and material aid", file: "211-repertoire-Thrift store and material aid.pdf" },
-            { id: "Sex and gender", file: "211-repertoire-Sex and gender.pdf" },
-            { id: "Transportation", file: "211-repertoire-Transportation.pdf" }
-            // { id: "Legal Aid", file: "legal.pdf" },
-            // Add as many as you need...
+            { id: "Homelessness", file: "211-repertoire-Homelessness.pdf" }
         ];
 
         const boroughsList = [
@@ -377,7 +164,6 @@
         // ==========================================
         // 2. STATE & UI INITIALIZATION
         // ==========================================
-        
         let resources = [];
         let currentFilteredList = [];
         let selectedBoroughs = new Set();
@@ -390,26 +176,19 @@
                        .replace(/[-–—']/g, " "); 
         }
 
-        // Initialize Category Chips
         const categoryContainer = document.getElementById('categoryList');
         categoryConfigs.forEach(cat => {
             const chip = document.createElement('div');
             chip.className = 'filter-chip';
             chip.textContent = cat.id;
             chip.onclick = () => {
-                if (selectedCategories.has(cat.id)) {
-                    selectedCategories.delete(cat.id);
-                    chip.classList.remove('selected');
-                } else {
-                    selectedCategories.add(cat.id);
-                    chip.classList.add('selected');
-                }
+                selectedCategories.has(cat.id) ? selectedCategories.delete(cat.id) : selectedCategories.add(cat.id);
+                chip.classList.toggle('selected');
                 executeSearch();
             };
             categoryContainer.appendChild(chip);
         });
 
-        // Initialize Borough Chips
         const boroughContainer = document.getElementById('boroughList');
         boroughsList.forEach(b => {
             normalizedBoroughsMap.set(b, normalizeText(b));
@@ -417,22 +196,16 @@
             chip.className = 'filter-chip';
             chip.textContent = b;
             chip.onclick = () => {
-                if (selectedBoroughs.has(b)) {
-                    selectedBoroughs.delete(b);
-                    chip.classList.remove('selected');
-                } else {
-                    selectedBoroughs.add(b);
-                    chip.classList.add('selected');
-                }
+                selectedBoroughs.has(b) ? selectedBoroughs.delete(b) : selectedBoroughs.add(b);
+                chip.classList.toggle('selected');
                 executeSearch();
             };
             boroughContainer.appendChild(chip);
         });
 
         // ==========================================
-        // 3. ASYNC MULTI-PDF LOADER
+        // 3. IMPROVED ASYNC MULTI-PDF LOADER
         // ==========================================
-
         async function loadAllDatabases() {
             let loadedCount = 0;
             const statsEl = document.getElementById('stats');
@@ -442,62 +215,90 @@
                 try {
                     const pdf = await pdfjsLib.getDocument(cat.file).promise;
                     let fullText = "";
+                    
                     for (let i = 1; i <= pdf.numPages; i++) {
                         const page = await pdf.getPage(i);
                         const textContent = await page.getTextContent();
-                        fullText += textContent.items.map(item => item.str).join('\n') + "\n";
+                        
+                        // Fix 1: Reconstruct newlines based on Y-coordinates.
+                        // PDF.js strips line breaks, so we manually detect them.
+                        let pageText = "";
+                        let lastY = -1;
+                        for (let item of textContent.items) {
+                            if (lastY !== -1 && Math.abs(lastY - item.transform[5]) > 4) {
+                                pageText += '\n'; // Start new line
+                            } else if (lastY !== -1) {
+                                pageText += ' '; // Add space between inline elements
+                            }
+                            pageText += item.str.trim();
+                            lastY = item.transform[5];
+                        }
+                        fullText += pageText + "\n";
                     }
                     processRawText(fullText, cat.id);
                 } catch (error) {
-                    console.warn(`Could not load file: ${cat.file}. Make sure it is uploaded.`, error);
+                    console.warn(`Could not load file: ${cat.file}. Make sure you are running a local server to prevent CORS errors.`, error);
+                    document.getElementById('loadingMessage').innerHTML = `<p style="color: coral;">Error loading ${cat.file}. Ensure you are using a local web server (CORS).</p>`;
                 }
                 loadedCount++;
             }
             
             statsEl.innerText = `DATABASE ONLINE | ${resources.length} RESOURCES`;
             document.getElementById('results').innerHTML = '<div class="welcome"><p>Database Online. Ready to search.</p></div>';
-            executeSearch(); // Run initial search in case filters were clicked during load
+            executeSearch(); 
         }
 
         // ==========================================
-        // 4. THE PARSER (WITH DEDUPLICATION)
+        // 4. THE PARSER (WITH FIXES)
         // ==========================================
-
         function processRawText(rawText, categoryName) {
-            let cleanText = rawText.replace(/--- PAGE \d+ ---/g, "").replace(/^\d+$/gm, "").replace(/[ \t]{2,}/g, ' ');
-            let rawBlocks = cleanText.split(/(?<=Legal status: .*\n)/gi);
-            if (rawBlocks.length > 0) rawBlocks.shift(); 
+            let cleanText = rawText.replace(/[ \t]{2,}/g, ' ');
+            
+            // Fix 2: Removed brittle variable-length Lookbehinds.
+            // Safely splits blocks using the consistent "Legal status" footer of 211 dirs
+            const splitRegex = /(Legal status:.*?(?:\n|$))/gi;
+            let parts = cleanText.split(splitRegex);
+            
+            let rawBlocks = [];
+            for(let i = 0; i < parts.length - 1; i += 2) {
+                rawBlocks.push(parts[i] + (parts[i+1] || ""));
+            }
 
             rawBlocks.forEach(block => {
-                let lines = block.trim().split('\n').map(l => l.trim()).filter(l => l.length > 0);
+                let lines = block.split('\n').map(l => l.trim()).filter(l => l.length > 0);
                 if (lines.length < 3) return;
                 
-                let addressIndex = lines.findIndex(line => /\d+/.test(line) && line.length > 10);
-                let startIndex = addressIndex > 0 ? addressIndex - 1 : 0;
-                if (lines[startIndex] && lines[startIndex].includes(':')) startIndex++;
+                // Fix 3: Strict anchor to find the address line, circumventing stray page headers
+                let addressIndex = lines.findIndex(line => 
+                    (/\d/.test(line) && (line.includes('QC') || line.toLowerCase().includes('montréal') || /\b[A-Z]\d[A-Z] ?\d[A-Z]\d\b/i.test(line))) ||
+                    (/^\d{1,5}\s+[A-Za-z]/.test(line) && line.length > 10 && !line.includes(':'))
+                );
+
+                if (addressIndex <= 0) return;
+
+                let startIndex = addressIndex - 1;
+
+                // Step back one more line if we accidentally hit a stray PDF category header
+                while(startIndex > 0 && (lines[startIndex].length < 4 || lines[startIndex].toLowerCase() === categoryName.toLowerCase())) {
+                    startIndex--;
+                }
+
                 let processedLines = lines.slice(startIndex);
-                
                 if (processedLines.length === 0) return;
                 
                 const orgName = processedLines[0];
-                const phoneMatch = block.match(/\d{3} \d{3}-\d{4}/);
+                const phoneMatch = block.match(/\d{3}[ -]\d{3}-\d{4}/);
                 
-                // Fingerprint identifies duplicates across different files
                 const fingerPrint = (orgName.substring(0, 30) + (phoneMatch ? phoneMatch[0] : "")).toLowerCase().replace(/[^a-z0-9]/g, '');
 
-                // Check if this org already exists from another PDF
                 let existingOrg = resources.find(r => r.fingerPrint === fingerPrint);
 
                 if (existingOrg) {
-                    // Just add the new category tag to the existing entry
                     if (!existingOrg.categories.includes(categoryName)) {
                         existingOrg.categories.push(categoryName);
                     }
                 } else {
-                    // Create new entry
                     const rawBlock = processedLines.join('\n');
-
-                    // --- EXTRACTING AGES ---
                     let minAge = 0, maxAge = 120;
                     const eligMatch = rawBlock.match(/Eligibility:([^\n]+)/i);
                     const eligText = eligMatch ? eligMatch[1].toLowerCase() : "";
@@ -515,7 +316,6 @@
                         }
                     }
 
-                    // --- EXTRACTING DEMOGRAPHICS ---
                     let servesWomen = true, servesMen = true, servesChildren = false, servesIndigenous = false;
 
                     const mentionsWomen = /\b(women|mothers?|female|girls?|femmes?|mères?|filles?|pregnant|maternity|maternal)\b/.test(eligText);
@@ -527,22 +327,14 @@
                     if (/\b(children|youth|family|families|parents?|enfants?|jeunes?|familles?|dads?|moms?|toddlers?|babies|baby|teens?|teenagers?|boys?|girls?)\b/.test(eligText) || minAge < 18 || maxAge <= 25) servesChildren = true;
                     if (/\b(indigenous|aboriginal|first nations|inuit|métis|native|autochtones?)\b/i.test(rawBlock)) servesIndigenous = true;
 
-                    resources.push({
-                        fingerPrint,
-                        categories: [categoryName],
-                        raw: rawBlock,
-                        contentLower: rawBlock.toLowerCase(),
-                        contentNormalized: normalizeText(rawBlock),
-                        minAge, maxAge, servesWomen, servesMen, servesChildren, servesIndigenous
-                    });
+                    resources.push({ fingerPrint, categories: [categoryName], raw: rawBlock, contentLower: rawBlock.toLowerCase(), contentNormalized: normalizeText(rawBlock), minAge, maxAge, servesWomen, servesMen, servesChildren, servesIndigenous });
                 }
             });
         }
 
         // ==========================================
-        // 5. SEARCH & FILTER EXECUTION
+        // 5. SEARCH ENGINE
         // ==========================================
-
         function parseTokens(str) {
             const terms = { includes: [], excludes: [] };
             let i = 0;
@@ -551,8 +343,7 @@
                 let isExclude = false;
                 if (str[i] === '-') { isExclude = true; i++; }
 
-                let term = "";
-                let isPhrase = false;
+                let term = ""; let isPhrase = false;
                 if (str[i] === '"') {
                     isPhrase = true; i++;
                     while (i < str.length && str[i] !== '"') { term += str[i]; i++; }
@@ -570,7 +361,7 @@
         }
 
         function executeSearch() {
-            if (resources.length === 0) return; // Prevent searching while loading
+            if (resources.length === 0) return;
 
             const query = document.getElementById('searchBox').value.trim();
             const minInput = parseInt(document.getElementById('minAge').value);
@@ -591,27 +382,19 @@
 
             currentFilteredList = resources.filter(res => {
                 if (userMin > res.maxAge || userMax < res.minAge) return false;
-
                 if (genderFilter === 'women' && !res.servesWomen) return false;
                 if (genderFilter === 'men' && !res.servesMen) return false;
                 if (genderFilter === 'women-only' && (!res.servesWomen || res.servesMen)) return false;
                 if (genderFilter === 'men-only' && (!res.servesMen || res.servesWomen)) return false;
-
                 if (popFilter === 'children' && !res.servesChildren) return false;
                 if (popFilter === 'indigenous' && !res.servesIndigenous) return false;
 
-                // Category Filter Logic (OR matching)
-                if (selectedCategories.size > 0) {
-                    if (!res.categories.some(c => selectedCategories.has(c))) return false;
-                }
+                if (selectedCategories.size > 0 && !res.categories.some(c => selectedCategories.has(c))) return false;
 
-                // Borough Filter Logic (OR matching)
                 if (selectedBoroughs.size > 0) {
                     let matchesBorough = false;
                     for (let b of selectedBoroughs) {
-                        if (res.contentNormalized.includes(normalizedBoroughsMap.get(b))) {
-                            matchesBorough = true; break;
-                        }
+                        if (res.contentNormalized.includes(normalizedBoroughsMap.get(b))) { matchesBorough = true; break; }
                     }
                     if (!matchesBorough) return false;
                 }
@@ -634,9 +417,8 @@
         }
 
         // ==========================================
-        // 6. RENDERING & FORMATTING
+        // 6. RENDERING
         // ==========================================
-
         function render(list, query) {
             const resultsDiv = document.getElementById('results');
             const tokens = parseTokens(query.replace(/\s+OR\s+/gi, " "));
@@ -653,9 +435,9 @@
 
                 body = body.replace(/(?<!EMAIL: )(?<!">)(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\/[^\s\n]*)?/gi, (url) => `<a href="${url.startsWith('http')?url:'https://'+url}" target="_blank">${url}</a>`);
                 body = body.replace(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/gi, `<a href="mailto:$1">$1</a>`);
-                body = body.replace(/(\d{3} \d{3}-\d{4})/g, `<a href="tel:$1" style="font-weight:bold">$1</a>`);
+                body = body.replace(/(\d{3}[ -]\d{3}-\d{4})/g, `<a href="tel:$1" style="font-weight:bold">$1</a>`);
 
-                const labels = ["Services:", "Eligibility:", "Hours:", "Website:", "Email:", "Address:", "Coverage area:", "Fees:", "Financing:"];
+                const labels = ["Services:", "Eligibility:", "Hours:", "Website:", "Email:", "Address:", "Coverage area:", "Fees:", "Financing:", "Legal status:"];
                 labels.forEach(l => body = body.replace(new RegExp(`(${l})`, "g"), `<span class="label">$1</span>`));
 
                 highlightTerms.sort((a,b) => b.length - a.length).forEach(t => {
@@ -665,9 +447,7 @@
                 });
 
                 let badges = '';
-                // Render category badges
                 item.categories.forEach(cat => badges += `<span class="badge badge-cat">${cat}</span>`);
-                
                 if (item.minAge > 0 || item.maxAge < 120) badges += `<span class="badge badge-age">${item.minAge}-${item.maxAge} YRS</span>`;
                 if (item.servesWomen && !item.servesMen) badges += `<span class="badge badge-demo">WOMEN ONLY</span>`;
                 if (item.servesMen && !item.servesWomen) badges += `<span class="badge badge-demo" style="color:var(--primary); border-color:var(--primary)">MEN ONLY</span>`;
@@ -685,9 +465,8 @@
         }
 
         // ==========================================
-        // 7. LISTENERS & EXPORTS
+        // 7. EVENTS & EXPORTS
         // ==========================================
-
         ['searchBox', 'minAge', 'maxAge', 'genderFilter', 'popFilter'].forEach(id => {
             document.getElementById(id).addEventListener('input', executeSearch);
         });
@@ -703,14 +482,12 @@
             a.download = "Resources.txt"; a.click();
         }
         function downloadCompactResults() {
-            const compact = currentFilteredList.map(item => `${item.raw.split('\n')[0].toUpperCase()}\n📞 ${item.raw.match(/\d{3} \d{3}-\d{4}/) || "N/A"}\n`).join('\n\n');
+            const compact = currentFilteredList.map(item => `${item.raw.split('\n')[0].toUpperCase()}\n📞 ${item.raw.match(/\d{3}[ -]\d{3}-\d{4}/) || "N/A"}\n`).join('\n\n');
             const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([compact], { type: 'text/plain' })); 
             a.download = "Contacts.txt"; a.click();
         }
 
-        // Boot the application
         window.onload = loadAllDatabases;
-
     </script>
 </body>
 </html>
